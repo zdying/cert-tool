@@ -10,6 +10,7 @@ var args = process.argv;
 var cmd = args[2];
 var func = null;
 var tmpPath = path.join(os.homedir(), '.cert-tool');
+var option = {};
 
 if(!fs.existsSync(tmpPath)){
     fs.mkdirSync(tmpPath)
