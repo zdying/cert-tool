@@ -1,7 +1,7 @@
 {
   "name": "cert-tool",
-  "version": "1.0.0",
-  "description": "A tool to generate SSL/TLS certificates Edit",
+  "version": "1.0.1",
+  "description": "A tool to generate SSL/TLS certificates",
   "main": "src/index.js",
   "bin": {
     "cert-tool": "./bin/cert-tool"
