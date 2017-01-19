@@ -1,0 +1,28 @@
+{
+  "name": "cert-tool",
+  "version": "1.0.0",
+  "description": "A tool to generate SSL/TLS certificates Edit",
+  "main": "src/index.js",
+  "bin": {
+    "cert-tool": "./bin/cert-tool"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zdying/cert-tool.git"
+  },
+  "keywords": [
+    "certificate",
+    "TLS/SSL",
+    "HTTPS",
+    "CA"
+  ],
+  "author": "zdying@live.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/zdying/cert-tool/issues"
+  },
+  "homepage": "https://github.com/zdying/cert-tool#readme"
+}
