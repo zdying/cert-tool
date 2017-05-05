@@ -1,10 +1,10 @@
 {
   "name": "cert-tool",
-  "version": "1.0.1",
+  "version": "1.0.5",
   "description": "A tool to generate SSL/TLS certificates",
   "main": "src/index.js",
   "bin": {
-    "cert-tool": "./bin/cert-tool"
+    "cert-tool": "./bin/cert-tool.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -24,5 +24,8 @@
   "bugs": {
     "url": "https://github.com/zdying/cert-tool/issues"
   },
-  "homepage": "https://github.com/zdying/cert-tool#readme"
+  "homepage": "https://github.com/zdying/cert-tool#readme",
+  "dependencies": {
+    "colors": "^1.1.2"
+  }
 }

@@ -15,8 +15,12 @@ var DOMAIN_CERT_SAN_CONF = path.join(SSL_ROOT, 'domain_cert_san.cnf');
 var OUTPUT_PATH = path.join(os.homedir(), '.cert-tool');
 
 module.exports = {
-    'sslPath': function(){
+    'outputDir': function(){
         console.log(OUTPUT_PATH);
+    },
+
+    'open': function(){
+        openFinder(OUTPUT_PATH);
     },
 
     /**
@@ -26,9 +30,8 @@ module.exports = {
     'createRootCert': function(caName){
         caName = caName || 'DefaultCA';
 
-        var _path = OUTPUT_PATH;
-        var keyPath = path.join(_path, caName + '.key');
-        var pemPath = path.join(_path, caName + '.pem');
+        var keyPath = path.join(OUTPUT_PATH, caName + '.key');
+        var pemPath = path.join(OUTPUT_PATH, caName + '.pem');
 
         if(fs.existsSync(keyPath) && fs.existsSync(pemPath)){
             console.log('Root CA `' + caName + '` already exists.');
@@ -53,7 +56,7 @@ module.exports = {
         console.log('Root CA created success, file name: ' + caName + '.key & ' + caName + '.pem');
         console.log('\n');
 
-        openFinder(_path);
+        openFinder(OUTPUT_PATH);
     },
 
     /**
@@ -91,7 +94,7 @@ module.exports = {
             var sanConf = fs.readFileSync(DOMAIN_CERT_SAN_CONF);
             var altNamesStr = getAltNames(domains);
 
-            domainConf = path.join(SSL_ROOT, fileName + '_tmp_conf.cnf');
+            domainConf = path.join(OUTPUT_PATH, fileName + '_tmp_conf.cnf');
 
             fs.writeFileSync(domainConf, sanConf + altNamesStr);
         }
@@ -124,12 +127,10 @@ module.exports = {
         );
 
         console.log('\n\n');
-        console.log('Root CA created success, file name: ' + (fileName + '.key & ' + fileName + '.pem').bold.green);
+        console.log('Certificate created success, file name: ' + (fileName + '.key & ' + fileName + '.pem').bold.green);
         console.log('\n\n');
 
-        var _path = path.join(SSL_ROOT, 'cert');
-
-        openFinder(_path);
+        openFinder(OUTPUT_PATH);
 
         if(isSAN && domainConf !== DOMAIN_CERT_SAN_CONF){
             fs.unlink(domainConf);
@@ -141,9 +142,9 @@ function openFinder(_path){
     var os = require('os');
 
     if(os.platform() === 'win32'){
-        child_process.exec('start "" "' + _path + '"');
+        child_process.execSync('start "" "' + _path + '"');
     }else{
-        child_process.exec('open ' + _path);
+        child_process.execSync('open ' + _path);
     }
 }
 
